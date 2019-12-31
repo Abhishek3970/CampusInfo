@@ -4,21 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rootConstrainedLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/gradient_background"
+        android:paddingTop="5dp"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbars="vertical">
 
 
         <Spinner
             android:id="@+id/spinner_day"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
+            android:layout_width="338dp"
+            android:layout_height="43dp"
             android:layout_marginTop="32dp"
-            android:spinnerMode="dropdown"
+            android:background="@drawable/spinner_corner_round"
+            android:paddingTop="5sp"
+            android:spinnerMode="dialog"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,8 +30,12 @@
         <Spinner
             android:id="@+id/spinner_time_slot"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="43dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/spinner_corner_round"
+            android:paddingTop="5sp"
+            android:spinnerMode="dialog"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/spinner_day"
             app:layout_constraintStart_toStartOf="@+id/spinner_day"
             app:layout_constraintTop_toBottomOf="@+id/spinner_day" />
@@ -35,11 +43,12 @@
         <TextView
             android:id="@+id/textView_or"
             android:layout_width="wrap_content"
-            android:textColor="@android:color/black"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/roboto"
             android:text="___________________OR___________________"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/spinner_time_slot"
             app:layout_constraintStart_toStartOf="@+id/spinner_time_slot"
@@ -47,25 +56,27 @@
 
         <Button
             android:id="@+id/button_current"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/button_corner_round"
             android:text="Use Current Time"
-            app:layout_constraintEnd_toEndOf="@+id/textView_or"
-            app:layout_constraintStart_toStartOf="@+id/textView_or"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_time_slot"
+            app:layout_constraintStart_toStartOf="@+id/spinner_time_slot"
             app:layout_constraintTop_toBottomOf="@+id/textView_or" />
 
         <TextView
             android:id="@+id/textView_output"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="339dp"
+            android:layout_height="286dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/spinner_corner_round"
             android:fontFamily="@font/roboto"
             android:overScrollMode="always"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbars="vertical"
             android:scrollHorizontally="false"
-            android:text="Text to be removed"
+            android:text="Enter Day and Time Slot\n Or\nUse Current Time"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -75,7 +86,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_current"
-            app:layout_constraintVertical_bias="0.18" />
+            app:layout_constraintVertical_bias="0.36" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
