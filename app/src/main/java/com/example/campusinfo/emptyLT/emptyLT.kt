@@ -130,7 +130,10 @@ class emptyLT : Fragment() {
 
         button_current.setOnClickListener {
             val temp = (viewModel as EmptyLtViewModel).setCurrent()
-            if(temp!="")  textView_output.text = temp
+            if(temp!="")
+                textView_output.text = temp
+            else
+                Toast.makeText(activity!!.applicationContext,"College Over" , Toast.LENGTH_SHORT ) .show()
         }
 
 

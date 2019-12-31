@@ -56,9 +56,9 @@
 
         <Button
             android:id="@+id/button_current"
+            android:layout_marginTop="16dp"
             android:layout_width="0dp"
             android:layout_height="43dp"
-            android:layout_marginTop="16dp"
             android:background="@drawable/button_corner_round"
             android:text="Use Current Time"
             app:layout_constraintEnd_toEndOf="@+id/spinner_time_slot"
