@@ -9,7 +9,7 @@ import kotlin.collections.ArrayList
 
 class EmptyLtViewModel : ViewModel() {   //NEW PROBLEM how to use file *** Solved by converting CSV file to a string resource
 
-    var arrTable = mutableListOf<Array<IntArray>>()
+    var arrTable = mutableListOf<Array<IntArray>>()            // elements:cs1,cs2,cs3,cs4,ec1,ec2,ec3,ec4,ee1,ee2,ee3,ee4,mec,mme
 
     fun createTable(tableData : String){
 
@@ -31,12 +31,30 @@ class EmptyLtViewModel : ViewModel() {   //NEW PROBLEM how to use file *** Solve
 
     fun showOutput(TimeSlot:Int,Day: Int): String{
         var opStr="Empty LT(s)\n"
-
+        var ct=0
         var checkarr = Array (8) {1}
 
         for(t in arrTable){
             if(t[TimeSlot][Day]!=0)
                 checkarr[ t[TimeSlot][Day] - 1 ] = 0
+
+            if(ct == 2){                                   // special case for cs3 as g1 and g2 in diff LT
+                if(Day == 1 && TimeSlot == 1)
+                    checkarr[2] = 0
+                if(Day == 3 && TimeSlot == 2)
+                    checkarr[7] = 0
+                if(Day == 4 && TimeSlot == 2)
+                    checkarr[6] = 0
+            }
+            if(ct == 4){                                    // special case for ec1 as g1 and g2 in diff LT
+                if(Day == 2 && TimeSlot == 4)
+                    checkarr[5] = 0
+                if(Day == 2 && TimeSlot == 7)
+                    checkarr[6] = 0
+            }
+
+
+            ct++
         }
         for(k in checkarr.indices){
             if(checkarr[k]!=0){
@@ -55,7 +73,7 @@ class EmptyLtViewModel : ViewModel() {   //NEW PROBLEM how to use file *** Solve
         var arr: MutableList<Int>  = ArrayList()
 
         var cal = Calendar.getInstance().time.toString()
-        Log.i("time","${cal} ${cal[11]-'0'} ${cal[12]-'0'}")
+     //   Log.i("time","${cal} ${cal[11]-'0'} ${cal[12]-'0'}")
         var flag = true
 
         var day=cal[0].toString()+cal[1].toString()
@@ -69,7 +87,7 @@ class EmptyLtViewModel : ViewModel() {   //NEW PROBLEM how to use file *** Solve
         if( (time < 510 ||time > 930 ) && day=="We" )
             flag = false
 
-        Log.i("values","$day $time")
+     //   Log.i("values","$day $time")
 
         if(!flag){                       // -1 indicate COLLEGE OVER
             arr.add(-1)
@@ -111,7 +129,7 @@ class EmptyLtViewModel : ViewModel() {   //NEW PROBLEM how to use file *** Solve
             }
         }
 
-        Log.i("date" ,"${arr[0]} ${arr[1]}")
+ //       Log.i("date" ,"${arr[0]} ${arr[1]}")
 
         return arr
     }              // used to map current day and time to correct keys

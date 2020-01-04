@@ -2,18 +2,14 @@ package com.example.campusinfo.emptyLT
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
 import com.example.campusinfo.R
-import com.example.campusinfo.databinding.EmptyLtFragmentBinding
 import kotlinx.android.synthetic.main.empty_lt_fragment.*
-import java.util.*
 
 class emptyLT : Fragment() {
 
@@ -32,7 +28,7 @@ class emptyLT : Fragment() {
     )          // used to compare user i/p with wednesday to set wednesday
 
     val normalDay = arrayOf(
-        "   Chose time slot:",
+        "   Chose Time Slot:",
         "   8:30-9:30",
         "   9:30-10:30",
         "   10:30-11:30",
@@ -45,7 +41,7 @@ class emptyLT : Fragment() {
     )
 
     val wednesday = arrayOf(
-        "   Chose time slot:",
+        "   Chose Time Slot:",
         "   8:30-9:30",
         "   9:30-10:15",
         "   10:15-11:00",
@@ -62,17 +58,14 @@ class emptyLT : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         val t=inflater.inflate(R.layout.empty_lt_fragment, container, false)
-        val spinner_day = t.findViewById<Spinner>(R.id.spinner_day)
+        val spinner_day = t.findViewById<Spinner>(R.id.spinner_branch)
         val spinner_time_slot = t.findViewById<Spinner>(R.id.spinner_time_slot)
         val button_current = t.findViewById<Button>(R.id.button_current)
 
         viewModel = ViewModelProviders.of(this).get(EmptyLtViewModel::class.java)
 
         // work Here
-
-        (viewModel as EmptyLtViewModel).createTable( getString(R.string.tt1) )    //Create All tables
-        (viewModel as EmptyLtViewModel).createTable( getString(R.string.tt2) )
-
+        fillTable()                   //filling Tables
 
         spinner_day?.adapter = ArrayAdapter(
             activity!!.applicationContext,
@@ -98,7 +91,7 @@ class emptyLT : Fragment() {
                // defDay = if(pos!=0) pos-1 else 0
                  defDay=pos
          //       Log.i("DaySelect","$pos")
-                if(parent!!.getItemAtPosition(pos).toString() == "  Wednesday") {
+                if(parent!!.getItemAtPosition(pos).toString() == "   Wednesday") {
                     spinner_time_slot?.adapter = ArrayAdapter(
                         activity!!.applicationContext,
                         R.layout.support_simple_spinner_dropdown_item,
@@ -112,10 +105,16 @@ class emptyLT : Fragment() {
                         normalDay
                     )
                 }
-                if(defDay!=0 && defTimeSlot!=0)
-                    textView_output.text = (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1)
+                if(defDay!=0 && defTimeSlot!=0){
+                        if( (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1) =="Empty LT(s)\n" ){
+                            textView_output.text ="Empty LT(s)\nNo Empty LT"
+                        }
+                        else{
+                            textView_output.text = (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1)
+                        }
+                }
             }
-        }
+        }      //Onclick Handler of day spinner
 
         spinner_time_slot.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -123,18 +122,29 @@ class emptyLT : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 defTimeSlot = p2
             //    Log.i("TimeSelect","$p2")
-                if(defDay!=0 && defTimeSlot!=0)
-                    textView_output.text = (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1)
+                if(defDay!=0 && defTimeSlot!=0){
+                    if( (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1) == "Empty LT(s)\n" ){
+                        textView_output.text ="Empty LT(s)\nNo Empty LT"
+                    }
+                    else{
+                        textView_output.text = (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1)
+                    }
+                }
+
             }
-        }
+        } //Onclick Handler of timeSlot spinner
 
         button_current.setOnClickListener {
             val temp = (viewModel as EmptyLtViewModel).setCurrent()
-            if(temp!="")
-                textView_output.text = temp
+            if(temp!=""){
+                if(temp== "Empty LT(s)\n")
+                    textView_output.text = temp
+                else
+                    textView_output.text = "Empty LT(s)\nNo Empty LT"
+            }
             else
-                Toast.makeText(activity!!.applicationContext,"College Over" , Toast.LENGTH_SHORT ) .show()
-        }
+                Toast.makeText(activity!!.applicationContext,"College Closed" , Toast.LENGTH_SHORT ) .show()
+        }                                                     //Onclick Handler of current Button
 
 
 
@@ -142,16 +152,33 @@ class emptyLT : Fragment() {
 
     }
 
+    private fun fillTable() {
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_cse1) )    //Create All tables
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_cse2) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_cse3) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_cse4) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_ece1) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_ece2) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_ece3) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_ece4) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_eee1) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_eee2) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_eee3) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.b_eee4) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.m_ece) )
+        (viewModel as EmptyLtViewModel).createTable( getString(R.string.m_me) )
+    }      //Filling Tables
+
     private fun fillDays(){
 
-            spinner_day?.adapter = ArrayAdapter(
+            spinner_branch?.adapter = ArrayAdapter(
                 activity!!.applicationContext,
                 R.layout.support_simple_spinner_dropdown_item,
                 day
             )
 
 
-    }  // Fill spinner_days with days
+    }        // Fill spinner_days with days
 
     private fun fillNormalDays(){
 
@@ -173,6 +200,16 @@ class emptyLT : Fragment() {
                 wednesday
             )
 
-    }  // Fill spinner_time_slot with wednesday time
+    }   // Fill spinner_time_slot with wednesday time
 
 }
+
+
+
+
+
+
+
+
+
+

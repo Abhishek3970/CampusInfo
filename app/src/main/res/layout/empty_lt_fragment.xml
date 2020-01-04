@@ -15,12 +15,12 @@
 
 
         <Spinner
-            android:id="@+id/spinner_day"
-            android:layout_width="338dp"
+            android:id="@+id/spinner_branch"
+            android:layout_width="339dp"
             android:layout_height="43dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/spinner_corner_round"
-            android:paddingTop="5sp"
+            android:paddingTop="5dp"
             android:spinnerMode="dialog"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,12 +33,12 @@
             android:layout_height="43dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/spinner_corner_round"
-            android:paddingTop="5sp"
+            android:paddingTop="5dp"
             android:spinnerMode="dialog"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/spinner_day"
-            app:layout_constraintStart_toStartOf="@+id/spinner_day"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_day" />
+            app:layout_constraintEnd_toEndOf="@+id/spinner_branch"
+            app:layout_constraintStart_toStartOf="@+id/spinner_branch"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_branch" />
 
         <TextView
             android:id="@+id/textView_or"
@@ -68,7 +68,7 @@
         <TextView
             android:id="@+id/textView_output"
             android:layout_width="339dp"
-            android:layout_height="286dp"
+            android:layout_height="295dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/spinner_corner_round"
             android:fontFamily="@font/roboto"
