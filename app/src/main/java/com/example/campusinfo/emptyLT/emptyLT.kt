@@ -1,5 +1,6 @@
 package com.example.campusinfo.emptyLT
 
+import android.app.Activity
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -63,6 +64,8 @@ class emptyLT : Fragment() {
         val button_current = t.findViewById<Button>(R.id.button_current)
 
         viewModel = ViewModelProviders.of(this).get(EmptyLtViewModel::class.java)
+
+
 
         // work Here
         fillTable()                   //filling Tables
