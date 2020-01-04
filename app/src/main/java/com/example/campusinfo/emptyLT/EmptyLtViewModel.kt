@@ -33,7 +33,6 @@ class EmptyLtViewModel : ViewModel() {   //NEW PROBLEM how to use file *** Solve
         var opStr="Empty LT(s)\n"
         var ct=0
         var checkarr = Array (8) {1}
-
         for(t in arrTable){
             if(t[TimeSlot][Day]!=0)
                 checkarr[ t[TimeSlot][Day] - 1 ] = 0
@@ -52,8 +51,6 @@ class EmptyLtViewModel : ViewModel() {   //NEW PROBLEM how to use file *** Solve
                 if(Day == 2 && TimeSlot == 7)
                     checkarr[6] = 0
             }
-
-
             ct++
         }
         for(k in checkarr.indices){

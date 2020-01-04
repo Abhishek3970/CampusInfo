@@ -33,7 +33,18 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_homePage_to_freeBatches"
+            app:destination="@id/freeBatches"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
+    <fragment
+        android:id="@+id/freeBatches"
+        android:name="com.example.campusinfo.freeBatches.freeBatches"
+        android:label="freeBatches" />
 
 
 </navigation>

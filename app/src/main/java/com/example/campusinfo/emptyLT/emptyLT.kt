@@ -137,7 +137,7 @@ class emptyLT : Fragment() {
         button_current.setOnClickListener {
             val temp = (viewModel as EmptyLtViewModel).setCurrent()
             if(temp!=""){
-                if(temp== "Empty LT(s)\n")
+                if(temp!= "Empty LT(s)\n")
                     textView_output.text = temp
                 else
                     textView_output.text = "Empty LT(s)\nNo Empty LT"
