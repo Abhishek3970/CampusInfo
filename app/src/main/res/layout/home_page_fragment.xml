@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background">
+
+        <TextView
+            android:id="@+id/textView_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="NITD\nCampus Info"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/primary_text_dark_nodisable"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button_empty_lt"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/button_corner_round"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="Find Empty LT"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Title" />
+
+        <Button
+            android:id="@+id/button_find_free_batches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_corner_round"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="Find Free Batches"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="@+id/button_empty_lt"
+            app:layout_constraintHorizontal_bias="0.531"
+            app:layout_constraintStart_toStartOf="@+id/button_empty_lt"
+            app:layout_constraintTop_toBottomOf="@+id/button_empty_lt" />
+
+        <Button
+            android:id="@+id/button_show_time_table"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_corner_round"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="Show Timetable"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="@+id/button_find_free_batches"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/button_find_free_batches"
+            app:layout_constraintTop_toBottomOf="@+id/button_find_free_batches" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

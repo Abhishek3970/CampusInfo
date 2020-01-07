@@ -3,6 +3,7 @@ package com.example.campusinfo.emptyLT
 import android.app.Activity
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,8 @@ import androidx.lifecycle.ViewModel
 import com.example.campusinfo.R
 import kotlinx.android.synthetic.main.empty_lt_fragment.*
 
-class emptyLT : Fragment() {
+class
+emptyLT : Fragment() {
 
     private lateinit var viewModel: ViewModel
 
@@ -62,6 +64,9 @@ class emptyLT : Fragment() {
         val spinner_day = t.findViewById<Spinner>(R.id.spinner_branch)
         val spinner_time_slot = t.findViewById<Spinner>(R.id.spinner_time_slot)
         val button_current = t.findViewById<Button>(R.id.button_current)
+        val textView_output = t.findViewById<TextView>(R.id.textView_output)
+
+        textView_output?.movementMethod = ScrollingMovementMethod()
 
         viewModel = ViewModelProviders.of(this).get(EmptyLtViewModel::class.java)
 
@@ -109,8 +114,8 @@ class emptyLT : Fragment() {
                     )
                 }
                 if(defDay!=0 && defTimeSlot!=0){
-                        if( (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1) =="Empty LT(s)\n" ){
-                            textView_output.text ="Empty LT(s)\nNo Empty LT"
+                        if( (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1) =="Empty LT(s)\n\n" ){
+                            textView_output.text ="Empty LT(s)\n\nNo Empty LT"
                         }
                         else{
                             textView_output.text = (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1)
@@ -126,8 +131,8 @@ class emptyLT : Fragment() {
                 defTimeSlot = p2
             //    Log.i("TimeSelect","$p2")
                 if(defDay!=0 && defTimeSlot!=0){
-                    if( (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1) == "Empty LT(s)\n" ){
-                        textView_output.text ="Empty LT(s)\nNo Empty LT"
+                    if( (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1) == "Empty LT(s)\n\n" ){
+                        textView_output.text ="Empty LT(s)\n\nNo Empty LT"
                     }
                     else{
                         textView_output.text = (viewModel as EmptyLtViewModel).showOutput(defTimeSlot-1,defDay-1)
@@ -138,12 +143,12 @@ class emptyLT : Fragment() {
         } //Onclick Handler of timeSlot spinner
 
         button_current.setOnClickListener {
-            val temp = (viewModel as EmptyLtViewModel).setCurrent()
+            var temp = (viewModel as EmptyLtViewModel).setCurrent()
             if(temp!=""){
-                if(temp!= "Empty LT(s)\n")
+                if(temp!= "Empty LT(s)\n\n")
                     textView_output.text = temp
                 else
-                    textView_output.text = "Empty LT(s)\nNo Empty LT"
+                    textView_output.text = "Empty LT(s)\n\nNo Empty LT"
             }
             else
                 Toast.makeText(activity!!.applicationContext,"College Closed" , Toast.LENGTH_SHORT ) .show()

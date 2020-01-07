@@ -13,35 +13,8 @@
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbars="vertical">
 
-
-        <Spinner
-            android:id="@+id/spinner_branch"
-            android:layout_width="339dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/spinner_corner_round"
-            android:paddingTop="5dp"
-            android:spinnerMode="dialog"
-            android:textAlignment="gravity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Spinner
-            android:id="@+id/spinner_time_slot"
-            android:layout_width="0dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/spinner_corner_round"
-            android:paddingTop="5dp"
-            android:spinnerMode="dialog"
-            android:textAlignment="gravity"
-            app:layout_constraintEnd_toEndOf="@+id/spinner_branch"
-            app:layout_constraintStart_toStartOf="@+id/spinner_branch"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_branch" />
-
         <TextView
-            android:id="@+id/textView_or"
+            android:id="@+id/textView_or2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -50,51 +23,71 @@
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/spinner_time_slot"
-            app:layout_constraintStart_toStartOf="@+id/spinner_time_slot"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_time_slot" />
+            app:layout_constraintEnd_toEndOf="@+id/spinner_time_slot_fb"
+            app:layout_constraintStart_toStartOf="@+id/spinner_time_slot_fb"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_time_slot_fb" />
+
+        <Spinner
+            android:id="@+id/spinner_day_fb"
+            android:layout_width="339dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/spinner_corner_round"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner_time_slot_fb"
+            android:layout_width="339dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/spinner_corner_round"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_day_fb"
+            app:layout_constraintHorizontal_bias="0.777"
+            app:layout_constraintStart_toStartOf="@+id/spinner_day_fb"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_day_fb" />
 
         <Button
-            android:id="@+id/button_current"
-            android:layout_marginTop="16dp"
+            android:id="@+id/button_use_current_time"
             android:layout_width="0dp"
-            android:layout_height="43dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:background="@drawable/button_corner_round"
             android:text="Use Current Time"
-            app:layout_constraintEnd_toEndOf="@+id/spinner_time_slot"
-            app:layout_constraintStart_toStartOf="@+id/spinner_time_slot"
-            app:layout_constraintTop_toBottomOf="@+id/textView_or" />
-
+            app:layout_constraintEnd_toEndOf="@+id/spinner_time_slot_fb"
+            app:layout_constraintStart_toStartOf="@+id/spinner_time_slot_fb"
+            app:layout_constraintTop_toBottomOf="@+id/textView_or2" />
 
         <TextView
-            android:id="@+id/textView_output"
+            android:id="@+id/textView_show_free_batches"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:background="@drawable/spinner_corner_round"
             android:fontFamily="@font/roboto"
-            android:overScrollMode="always"
             android:paddingStart="20dp"
             android:paddingTop="5dp"
             android:paddingEnd="20dp"
             android:paddingBottom="5dp"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbars="vertical"
-            android:scrollHorizontally="false"
             android:text="Enter Day and Time Slot\n Or\nUse Current Time"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_current" />
+            app:layout_constraintTop_toBottomOf="@+id/button_use_current_time" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </layout>

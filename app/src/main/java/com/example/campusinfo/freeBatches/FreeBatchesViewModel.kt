@@ -1,76 +1,73 @@
-package com.example.campusinfo.emptyLT
-
+package com.example.campusinfo.freeBatches
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
+class FreeBatchesViewModel : ViewModel() {
 
-class EmptyLtViewModel : ViewModel() {   //NEW PROBLEM how to use file *** Solved by converting CSV file to a string resource
-
-    var arrTable = mutableListOf<Array<IntArray>>()            // elements:cs1,cs2,cs3,cs4,ec1,ec2,ec3,ec4,ee1,ee2,ee3,ee4,mec,mme
+    var arrTable = mutableListOf<Array<IntArray>>()            // elements:cs1,cs2,cs3,cs4,ec1,ec2,ec3,ec4,ee1,ee2,ee3,ee4
 
     fun createTable(tableData : String){
 
-       var table= Array(9) {IntArray(5)}
+        var table= Array(9) {IntArray(5)}
 
-       Log.i("ViewM","$tableData" )   //Data coming as list
+        Log.i("ViewM","$tableData" )   //Data coming as list
 
-       var k=0
-       for(i in 0..8){
+        var k=0
+        for(i in 0..8){
             for(j in 0..4){
                 table[i][j]=tableData[k]-'0'
                 k+=2
-              //  Log.i("table","table[$i][$j]=${table[i][j]}")
+                //  Log.i("table","table[$i][$j]=${table[i][j]}")
             }
         }
-       arrTable.add(table)
+        arrTable.add(table)
 
-   }                   // adds a table of 9*5 matrix in above arrTable
+    }                 //fills Table
 
-    fun showOutput(TimeSlot:Int,Day: Int): String{
-        var opStr="Empty LT(s)\n\n"
+    fun giveBatches(no: Int): String{
+        return when(no){
+            0->"CSE1"
+            1->"CSE2"
+            2->"CSE3"
+            3->"CSE4"
+            4->"ECE1"
+            5->"ECE2"
+            6->"ECE3"
+            7->"ECE4"
+            8->"EEE1"
+            9->"EEE2"
+            10->"EEE3"
+            11 ->"EEE4"
+            else ->""
+        }
+    }                 //Returns branch name relative to its position in arrTable
+
+    fun showOutputBatches(TimeSlot:Int,Day: Int) : String{
         var ct=0
-        var checkarr = Array (8) {1}
+        var opStr = "Free Batches\n\n"
         for(t in arrTable){
-            if(t[TimeSlot][Day]!=0)
-                checkarr[ t[TimeSlot][Day] - 1 ] = 0
-
-            if(ct == 2){                                   // special case for cs3 as g1 and g2 in diff LT
-                if(Day == 1 && TimeSlot == 1)
-                    checkarr[2] = 0
-                if(Day == 3 && TimeSlot == 2)
-                    checkarr[7] = 0
-                if(Day == 4 && TimeSlot == 2)
-                    checkarr[6] = 0
-            }
-            if(ct == 4){                                    // special case for ec1 as g1 and g2 in diff LT
-                if(Day == 2 && TimeSlot == 4)
-                    checkarr[5] = 0
-                if(Day == 2 && TimeSlot == 7)
-                    checkarr[6] = 0
+            if(t[TimeSlot][Day] == 0){
+                opStr +=  (giveBatches(ct) + "\n")
             }
             ct++
         }
-        for(k in checkarr.indices){
-            if(checkarr[k]!=0){
-                opStr+="LT${k+1}\n"
-            }
-        }
         return opStr
-    }         // function which returns values to be set in output textView
+    }    //gives output
 
     fun setCurrent():String{                                    //CONTINUE WORKING HERE use return to call show output function
         var res = setkeys()
-        return if(res[0]==-1 && res[1]==-1) "" else showOutput(res[1],res[0])   //1 - timeSlot , 0 - day
+   //     Log.i("fbv"," ${res[0]} ${res[1]}")
+        return if(res[0]==-1 && res[1]==-1) "" else showOutputBatches(res[1],res[0])   //1 - timeSlot , 0 - day
     }                               // used to set current time and day
 
     private fun setkeys(): MutableList<Int> {
         var arr: MutableList<Int>  = ArrayList()
 
         var cal = Calendar.getInstance().time.toString()
-     //   Log.i("time","${cal} ${cal[11]-'0'} ${cal[12]-'0'}")
+        //   Log.i("time","${cal} ${cal[11]-'0'} ${cal[12]-'0'}")
         var flag = true
 
         var day=cal[0].toString()+cal[1].toString()
@@ -84,7 +81,7 @@ class EmptyLtViewModel : ViewModel() {   //NEW PROBLEM how to use file *** Solve
         if( (time < 510 ||time > 930 ) && day=="We" )
             flag = false
 
-     //   Log.i("values","$day $time")
+        //   Log.i("values","$day $time")
 
         if(!flag){                       // -1 indicate COLLEGE OVER
             arr.add(-1)
@@ -126,11 +123,11 @@ class EmptyLtViewModel : ViewModel() {   //NEW PROBLEM how to use file *** Solve
             }
         }
 
- //       Log.i("date" ,"${arr[0]} ${arr[1]}")
+        //       Log.i("date" ,"${arr[0]} ${arr[1]}")
 
         return arr
     }              // used to map current day and time to correct keys
 
+
+
 }
-
-
