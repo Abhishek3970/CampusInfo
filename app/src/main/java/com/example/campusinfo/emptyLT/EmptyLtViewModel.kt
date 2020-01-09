@@ -51,6 +51,11 @@ class EmptyLtViewModel : ViewModel() {   //NEW PROBLEM how to use file *** Solve
                 if(Day == 2 && TimeSlot == 7)
                     checkarr[6] = 0
             }
+            if(ct==8){
+                if(Day == 3 && TimeSlot == 1)
+                    checkarr[5] = 0
+            }
+
             ct++
         }
         for(k in checkarr.indices){
